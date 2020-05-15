@@ -137,6 +137,26 @@ class List {
   reverse(list) {
     return List.reverseList(list);
   }
+
+  [Symbol.iterator]() {
+    let curr = this.list;
+
+    return {
+      next() {
+        if (curr === null) {
+          return {
+            done: true
+          }
+        }
+        const { value } = curr;
+        curr = curr.next;
+        return {
+          done: false,
+          value
+        };
+      }
+    }
+  }
 }
 
 const l1 = new List();
@@ -156,12 +176,12 @@ l1.add(46);
 // console.log("LIST 1");
 // l1.print(); // 45→76→12→2→61→null
 
-console.log("LIST 1");
-l1.print(); // 45→76→12→33→2→61→null
-console.log("LIST 2");
-l1.printReverse(); // 76→12→33→2→61→null
-const l2 = new List();
-l2.add(1);
-l2.add(2);
-l2.add(3);
-console.log(l2.reverse(l2.list));
+// console.log("LIST 1");
+// l1.print(); // 45→76→12→33→2→61→null
+// console.log("LIST 2");
+// l1.printReverse(); // 76→12→33→2→61→null
+// const l2 = new List();
+// l2.add(1);
+// l2.add(2);
+// l2.add(3);
+// console.log(l2.reverse(l2.list));
