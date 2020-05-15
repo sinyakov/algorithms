@@ -35,10 +35,10 @@ const heapify = (i, arr, length) => {
   let right = 2 * i + 2;
   let index = i;
 
-  if (left < length && arr[left] < arr[index]) {
+  if (left < length && arr[left] > arr[index]) {
     index = left;
   }
-  if (right < length && arr[right] < arr[index]) {
+  if (right < length && arr[right] > arr[index]) {
     index = right;
   }
 
@@ -53,13 +53,13 @@ const heapify = (i, arr, length) => {
 const arrForLog = [3, 20, 7, 10, 8, 14, 9, 9, 15, 18];
 heapify(1, arrForLog);
 
-//1              7                      3
+//1             18                      3
 //             /   \                  20 7
-//2         4         15
+//2         14       15
 //        /   \     /   \
-//4     18    14   8     9
+//4     10     9   8     9
 //     /  \   /
-//8   3   10 9
+//8   3   4  7
 
 const array = [7, 4, 15, 18, 14, 8, 9, 3, 10, 9];
 heapSort(array);
@@ -74,7 +74,7 @@ function heapSort(array) {
   let length = array.length;
   while (length > 0) {
     [array[0], array[length - 1]] = [array[length - 1], array[0]];
-    heapify(0, array, length);
+    heapify(0, array, length - 1);
     length--;
   }
   return array;
